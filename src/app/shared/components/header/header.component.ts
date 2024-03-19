@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  crear() {
+    console.log("Hola");
+  }
+
 }

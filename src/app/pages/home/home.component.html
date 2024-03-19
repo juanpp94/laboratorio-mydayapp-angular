@@ -3,9 +3,7 @@
   <div class="container todoapp-wrapper">
     <!-- This section should be hidden by default and shown when there are todos -->
     <section class="main" *ngIf="items.length > 0">
-      <ul class="todo-list">
-        <app-item [item]="item" *ngFor=" let item of items"></app-item>
-      </ul>
+      <app-items-list [items]="items"></app-items-list>
     </section>
     <!-- This footer should be hidden by default and shown when there are todos -->
     <app-footer *ngIf="items.length > 0" [numberOfItemsCompleted]="numberOfItemsCompleted"></app-footer>
