@@ -14,10 +14,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.setItemList(this.itemList);
+    console.log("entre a la app");
   }
 
-  setItemList(itemList: Item[]): void {
-    this.itemsService.saveItemsList(itemList);
-  }
+  
 }

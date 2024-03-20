@@ -1,5 +1,5 @@
 <section class="todoapp">
-  <app-header></app-header>
+  <app-header (updateList)="refreshList($event)"></app-header>
   <div class="container todoapp-wrapper">
     <!-- This section should be hidden by default and shown when there are todos -->
     <section class="main" *ngIf="items.length > 0">

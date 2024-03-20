@@ -5,5 +5,7 @@ export interface Item {
 }
 
 export interface CreateItemDto {
+    completed:boolean;
+    id: string;
     title: string
 }
