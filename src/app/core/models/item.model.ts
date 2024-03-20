@@ -3,3 +3,7 @@ export interface Item {
     id: string;
     title: string;
 }
+
+export interface CreateItemDto {
+    title: string
+}

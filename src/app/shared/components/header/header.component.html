@@ -3,11 +3,12 @@
       <h1>My Day</h1>
       <p>All my tasks in one place</p>
       <input
+        [formControl]="inputItemTitle"
         class="new-todo"
         placeholder="Type new todo"
         autofocus
         type="text"
-        (keyup.enter)="crear()"
+        (keyup.enter)="addItem()"
       />
     </div>
 </header>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
@@ -7,8 +8,15 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
-  crear() {
-    console.log("Hola");
+  inputItemTitle = new FormControl(
+    '', {nonNullable: true}
+  );
+
+  /**
+   * Method that adds items to the list
+   */
+  addItem() {
+    console.log(this.inputItemTitle.value);
   }
 
 }
