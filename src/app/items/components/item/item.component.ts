@@ -16,15 +16,31 @@ export class ItemComponent {
 
    }
 
+   changeStatus(item: Item): void {
+      this.itemsService.changeItemStatus(item);
+   }
+
+   /**
+    * Method that deletes an item from the list
+    * @param item 
+    * 
+    */
    deleteItem(item: Item) {
     console.log(item);
     this.itemsService.deleteItem(item.id);
-    let itemsAux: Item[] = this.getItemList();
+    let itemsAux: Item[] = this.getItemsList();
     this.updateList.next(itemsAux);
 
    }
+   
 
-   getItemList(): Item[] {
+
+
+   /**
+    * Method that returns the items list
+    * @returns 
+    */
+   getItemsList(): Item[] {
     let itemsAux: Item[] = this.itemsService.getItemsList();
     return itemsAux;
    }

@@ -38,6 +38,7 @@ export class HomeComponent implements OnInit {
   refreshFooter(event: Number): void {
     let numberOfCompletedItems: Number = event;
     console.log("nuevo numero de completed items:",numberOfCompletedItems);
+    //this.setItemsList
   }
 
   /**

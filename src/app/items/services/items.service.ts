@@ -32,6 +32,21 @@ export class ItemsService {
     return itemList;
   }
 
+  changeItemStatus(item: Item): void {
+    let items: Item[] = this.getItemsList();
+
+    for(let i = 0; i < items.length; i++){
+      if(items[i].id === item.id) {
+        console.log("lo consegui");
+        items[i].completed = !items[i].completed;
+        console.log(item);
+      }
+      console.log(items);
+    }
+    //console.log(items);
+
+  }
+
 
 
   /**
@@ -42,6 +57,10 @@ export class ItemsService {
     this.itemHttpService.createItemInLocalStorage(itemDto);
   }
 
+  /**
+   * Method that deletes an element from the list
+   * @param itemId 
+   */
   deleteItem(itemId: string): void {
     let itemsAux: Item[] = this.getItemsList();
     let itemsUpdated: Item[] = itemsAux.filter((item) => item.id !== itemId);

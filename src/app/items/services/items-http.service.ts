@@ -17,7 +17,7 @@ export class ItemsHttpService {
   createItemInLocalStorage(item: CreateItemDto): void {
     let itemList: Item[] = this.getItemListFromLocalStorage();
     itemList.push(item);
-    console.log(itemList);
+    //console.log(itemList);
     this.setItemListInLocalStorage(itemList);
     
   }
@@ -28,7 +28,7 @@ export class ItemsHttpService {
    */
    getItemListFromLocalStorage(): Item[] {
     let itemList: Item[] = JSON.parse(localStorage.getItem("mydayapp-angular")!);
-    console.log(itemList);
+    //console.log(itemList);
     return itemList;
   }
   
