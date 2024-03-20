@@ -32,12 +32,22 @@ export class ItemsService {
     return itemList;
   }
 
+
+
   /**
    * Method that creates an item
    * @param itemDto 
    */
   createItem(itemDto: CreateItemDto): void  {
     this.itemHttpService.createItemInLocalStorage(itemDto);
+  }
+
+  deleteItem(itemId: string): void {
+    let itemsAux: Item[] = this.getItemsList();
+    let itemsUpdated: Item[] = itemsAux.filter((item) => item.id !== itemId);
+    console.log(itemsUpdated);
+    this.itemHttpService.setItemListInLocalStorage(itemsUpdated);
+
   }
 
   setItemsListObservable(itemsList: Item[]) {

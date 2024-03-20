@@ -31,6 +31,7 @@ export class ItemsHttpService {
     console.log(itemList);
     return itemList;
   }
+  
 
   /**
    * Method that set items list in local storage

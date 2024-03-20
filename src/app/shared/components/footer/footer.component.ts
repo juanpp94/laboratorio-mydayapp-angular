@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent {
- @Input() numberOfItemsCompleted: number = -1;
+ @Input() numberOfCompletedItems: number = -1;
 }

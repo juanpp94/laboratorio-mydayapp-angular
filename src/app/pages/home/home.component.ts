@@ -12,13 +12,13 @@ export class HomeComponent implements OnInit {
 
   ];
 
-  numberOfItemsCompleted: number = -1;
+  numberOfCompletedItems: number = -1;
 
   constructor(private itemService: ItemsService) { }
 
   ngOnInit(): void {
-    this.numberOfItemsCompleted = this.getNumberOfItemsCompleted();
-    console.log(this.numberOfItemsCompleted);
+    this.numberOfCompletedItems = this.getNumberOfCompletedItems();
+    console.log(this.numberOfCompletedItems);
     let itemsAux: Item[] = this.getItemsList();
     this.setItemsList(itemsAux);
   }
@@ -32,13 +32,19 @@ export class HomeComponent implements OnInit {
     console.log("nueva lista",event);
     let updatedList: Item[] = event;
     this.setItemsList(updatedList);
+    this.getNumberOfCompletedItems();
+  }
+
+  refreshFooter(event: Number): void {
+    let numberOfCompletedItems: Number = event;
+    console.log("nuevo numero de completed items:",numberOfCompletedItems);
   }
 
   /**
    * Method that gets the numbers of items completed
    * @returns 
    */
-  getNumberOfItemsCompleted(): number {
+  getNumberOfCompletedItems(): number {
 
     let itemsCompleted = this.items.filter( (item: Item) => item.completed === true);
     return itemsCompleted.length;

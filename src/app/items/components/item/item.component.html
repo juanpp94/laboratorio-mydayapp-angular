@@ -1,8 +1,8 @@
 <li [ngClass]="{'completed': item.completed}" >
     <div class="view">
-      <input class="toggle" type="checkbox" [checked]="item.completed" />
+      <input  class="toggle" type="checkbox" [checked]="item.completed" />
       <label>{{item.title}}</label>
-      <button class="destroy"></button>
+      <button (click)="deleteItem(item)"  class="destroy"></button>
     </div>
     <input class="edit" [value]="item.title" />
 </li>
