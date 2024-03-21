@@ -1,4 +1,4 @@
-<li (dblclick)="activateEditMode(item)" (keyup.enter)="desactivateEditMode(item)" [ngClass]="{'completed': item.completed, 'editing': item.editMode}"   >
+<li (dblclick)="activateEditMode(item)" (keyup.enter)="desactivateEditModeAndSaveChanges(item)" (keyup.esc)="desactivateEditMode(item)" [ngClass]="{'completed': item.completed, 'editing': item.editMode}"   >
     <div  class="view">
       <input (click)="changeStatus(item)"  class="toggle" type="checkbox" [checked]="item.completed" />
       <label>{{item.title}}</label>

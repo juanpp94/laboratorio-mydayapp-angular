@@ -82,15 +82,19 @@ export class ItemComponent {
      * Method that desactivates the edit mode
      * @param item 
      */
-    desactivateEditMode(item: Item){
+    desactivateEditModeAndSaveChanges(item: Item){
       console.log("hice doble click");
       let titleAux: string = this.getNewInputTitle();
       if(this.isTitleValid(titleAux)) {
-         item.editMode = !item.editMode;
+         this.desactivateEditMode(item);
          item.title = this.getNewInputTitle();
          this.updateItem({"id": item.id, "title": item.title});
       }
       
+     }
+
+     desactivateEditMode(item: Item): void {
+         item.editMode = !item.editMode;
      }
 
 
