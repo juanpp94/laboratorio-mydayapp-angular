@@ -81,6 +81,7 @@ export class HomeComponent implements OnInit {
   setItemsList(item: Item[]): void {
     this.itemsService.itemsList = item;
     this.items = item;
+    this.itemsService.setItemsList(this.items);
   }
 
   

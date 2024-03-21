@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CreateItemDto, Item } from 'src/app/core/models/item.model';
+import { CreateItemDto, Item, UpdateItemDto } from 'src/app/core/models/item.model';
 import { ItemsHttpService } from './items-http.service';
 import { Subject } from 'rxjs';
 
@@ -11,6 +11,7 @@ export class ItemsService {
   itemsList$ = new Subject<Item[]>();
   itemsList: Item[] = [];
   completedItems: Item[] = [];
+  
 
   constructor(private itemHttpService: ItemsHttpService) { }
 
@@ -22,6 +23,28 @@ export class ItemsService {
     this.itemsList = itemList;
     this.itemHttpService.setItemListInLocalStorage(itemList);
     
+  }
+  
+  
+
+  /**
+   * Method that updates the title of an item
+   * @param updatedItem 
+   */
+  updateItem(updatedItem: UpdateItemDto): void {
+    this.itemsList = this.getItemsList();
+    let itemsAux = this.itemsList.map((item: Item) => {
+      if(item.id === updatedItem.id) {
+        item.title = updatedItem.title
+        console.log(item);
+      }
+      return item;
+    })
+    //this.itemsList = itemsAux;
+    this.setItemsList(itemsAux);
+
+    //console.log(itemsAux);
+
   }
 
   /**
@@ -82,6 +105,7 @@ export class ItemsService {
    * @param itemDto 
    */
   createItem(itemDto: CreateItemDto): void  {
+    console.log(itemDto);
     this.itemHttpService.createItemInLocalStorage(itemDto);
   }
 

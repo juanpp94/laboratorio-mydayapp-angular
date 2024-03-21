@@ -38,6 +38,7 @@ export class ItemsHttpService {
    */
   setItemListInLocalStorage(itemList: Item[]): void {
     if(!this.getItemListFromLocalStorage()) {
+      console.log("aqui deberia estar");
       localStorage.setItem("mydayapp-angular",JSON.stringify([]));
     } else {
       localStorage.setItem("mydayapp-angular",JSON.stringify(itemList));

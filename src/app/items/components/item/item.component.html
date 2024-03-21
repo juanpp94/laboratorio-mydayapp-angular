@@ -1,8 +1,8 @@
-<li [ngClass]="{'completed': item.completed}" >
-    <div class="view">
+<li (dblclick)="activateEditMode(item)" (keyup.enter)="desactivateEditMode(item)" [ngClass]="{'completed': item.completed, 'editing': item.editMode}"   >
+    <div  class="view">
       <input (click)="changeStatus(item)"  class="toggle" type="checkbox" [checked]="item.completed" />
       <label>{{item.title}}</label>
       <button (click)="deleteItem(item)"  class="destroy"></button>
     </div>
-    <input class="edit" [value]="item.title" />
+    <input #inputTitle class="edit" [value]="item.title" [formControl]="inputItemTitle" (focus)="item.editMode" />
 </li>

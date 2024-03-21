@@ -27,7 +27,7 @@ export class HeaderComponent {
     let itemList: Item[] = this.getItemList();
     let title: string = this.inputItemTitle.value;
     if(this.isTitleValid(title)) {
-      this.itemsService.createItem({"completed" : false, "id": String(itemList.length) , "title": title});
+      this.itemsService.createItem({"completed" : false, "id": String(itemList.length) , "title": title, "editMode": false});
       this.clearItemTitleInput();
       let itemsAux: Item[] = this.getItemList();
       this.itemsService.itemsList = itemsAux;

@@ -2,10 +2,19 @@ export interface Item {
     completed: boolean;
     id: string;
     title: string;
+    editMode: boolean;
+    
 }
 
 export interface CreateItemDto {
-    completed:boolean;
-    id: string;
-    title: string
+    completed:Item['completed'];
+    id: Item['id'];
+    title: Item['title'];
+    editMode: Item['editMode']
+}
+
+
+export interface UpdateItemDto {
+    id: Item['id'];
+    title: Item['title'];
 }
