@@ -1,3 +1,5 @@
+export type FilterList = 'all' | 'pending' | 'completed';
+
 export interface Item {
     completed: boolean;
     id: string;
@@ -18,3 +20,5 @@ export interface UpdateItemDto {
     id: Item['id'];
     title: Item['title'];
 }
+
+

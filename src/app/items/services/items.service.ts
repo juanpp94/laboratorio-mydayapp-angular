@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CreateItemDto, Item, UpdateItemDto } from 'src/app/core/models/item.model';
+import { CreateItemDto, FilterList, Item, UpdateItemDto } from 'src/app/core/models/item.model';
 import { ItemsHttpService } from './items-http.service';
 import { Subject } from 'rxjs';
 
@@ -11,6 +11,7 @@ export class ItemsService {
   itemsList$ = new Subject<Item[]>();
   itemsList: Item[] = [];
   completedItems: Item[] = [];
+  filter: FilterList = "all";
   
 
   constructor(private itemHttpService: ItemsHttpService) { }
@@ -119,6 +120,39 @@ export class ItemsService {
     console.log(itemsUpdated);
     this.itemHttpService.setItemListInLocalStorage(itemsUpdated);
 
+  }
+
+  /**
+   * Method that gets the returns the string to filter the items list
+   * @returns 
+   */
+  getFilter(): FilterList {
+    return this.filter;
+  }
+
+  getFilteredItems(filter: FilterList): Item[] {
+    let itemsAux: Item[] = this.getItemsList();
+    let itemsFiltered: Item[] = [];
+    // this.itemsService.setFilter(filter);
+    if(filter === "completed") {
+      itemsFiltered = itemsAux.filter((item: Item) => item.completed === true);
+    } else if(filter === "pending") {
+      itemsFiltered = itemsAux.filter((item: Item) => item.completed === false);
+    } else {
+      itemsFiltered = itemsAux;
+    }
+    //console.log(itemsFiltered);
+    return itemsFiltered;
+    
+  }
+
+  /**
+   * Method that sets the string to filter the items list
+   * @param filter 
+   */
+  setFilter(filter: FilterList) {
+    console.log("nuevo filtro:",filter);
+    this.filter = filter;
   }
 
   

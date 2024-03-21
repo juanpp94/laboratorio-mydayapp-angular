@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Item } from 'src/app/core/models/item.model';
 import { ItemsService } from 'src/app/items/services/items.service';
 
@@ -16,7 +17,7 @@ export class HeaderComponent {
 
   @Output() updateList = new EventEmitter<Item[]>();
 
-  constructor(private itemsService: ItemsService) {
+  constructor(private itemsService: ItemsService, private router: Router) {
 
   }
 
@@ -31,6 +32,8 @@ export class HeaderComponent {
       this.clearItemTitleInput();
       let itemsAux: Item[] = this.getItemList();
       this.itemsService.itemsList = itemsAux;
+      this.itemsService.filter = "all";
+      this.router.navigate(["/","all"])
       //this.updateList.next(itemsAux);
       //console.log(this.inputItemTitle.value);
     }

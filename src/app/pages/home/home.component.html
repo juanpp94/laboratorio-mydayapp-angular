@@ -6,6 +6,7 @@
       <app-items-list  [items]="itemsService.itemsList"></app-items-list>
     </section>
     <!-- This footer should be hidden by default and shown when there are todos -->
-    <app-footer *ngIf="itemsService.itemsList.length > 0" [numberOfCompletedItems]="this.itemsService.completedItems.length"></app-footer>
+    <app-footer (updateFilter)="refreshFilter($event)" *ngIf="itemsService.itemsList.length > 0" [numberOfCompletedItems]="itemsService.completedItems.length" 
+      ></app-footer>
   </div>
 </section>

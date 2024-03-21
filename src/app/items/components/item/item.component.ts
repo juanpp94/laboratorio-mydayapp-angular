@@ -2,6 +2,7 @@ import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@
 import { Item, UpdateItemDto } from 'src/app/core/models/item.model';
 import { ItemsService } from '../../services/items.service';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-item',
@@ -19,7 +20,7 @@ export class ItemComponent {
       '', {nonNullable: true}
     );
 
-   constructor(private itemsService: ItemsService) {
+   constructor(private itemsService: ItemsService, private router: Router) {
 
    }
 
@@ -30,6 +31,7 @@ export class ItemComponent {
    changeStatus(item: Item): void {
       item.completed = !item.completed;
       this.itemsService.changeItemStatus(item);
+      //this.router.navigate(["/","all"])
    }
 
    /**
@@ -44,6 +46,7 @@ export class ItemComponent {
     let completedItemsAux: Item[] = this.getCompletedItems();
     this.setCompletedItems(completedItemsAux);
     this.itemsService.itemsList = itemsAux;
+    //this.router.navigate(["/","all"])
     //this.updateList.next(itemsAux);
 
    }
@@ -100,6 +103,7 @@ export class ItemComponent {
 
    updateItem(updatedItem: UpdateItemDto) {
       this.itemsService.updateItem(updatedItem);
+      this.router.navigate(["/","all"])
    }
 
    

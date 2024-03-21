@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemsService } from './items/services/items.service';
 import { Item } from './core/models/item.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +10,13 @@ import { Item } from './core/models/item.model';
 export class AppComponent implements OnInit {
 
   itemList: Item[] = [];
-  constructor(private itemsService: ItemsService) {
+  constructor(private itemsService: ItemsService, private router: Router) {
 
   }
 
   ngOnInit() {
-    console.log("entre a la app");
+    console.log("vine para el app component");
+    this.router.navigateByUrl('/all')
   }
 
   
