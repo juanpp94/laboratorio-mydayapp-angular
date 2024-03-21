@@ -30,7 +30,8 @@ export class HeaderComponent {
       this.itemsService.createItem({"completed" : false, "id": String(itemList.length) , "title": title});
       this.clearItemTitleInput();
       let itemsAux: Item[] = this.getItemList();
-      this.updateList.next(itemsAux);
+      this.itemsService.itemsList = itemsAux;
+      //this.updateList.next(itemsAux);
       //console.log(this.inputItemTitle.value);
     }
     

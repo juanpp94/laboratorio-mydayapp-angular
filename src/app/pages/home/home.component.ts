@@ -14,13 +14,15 @@ export class HomeComponent implements OnInit {
 
   numberOfCompletedItems: number = -1;
 
-  constructor(private itemService: ItemsService) { }
+  constructor(public itemsService: ItemsService) { }
 
   ngOnInit(): void {
-    this.numberOfCompletedItems = this.getNumberOfCompletedItems();
+    //this.numberOfCompletedItems = this.getNumberOfCompletedItems();
     console.log(this.numberOfCompletedItems);
     let itemsAux: Item[] = this.getItemsList();
     this.setItemsList(itemsAux);
+    let completedItemsAux = this.getCompletedItems();
+    this.setCompletedItems(completedItemsAux);
   }
 
 
@@ -32,8 +34,10 @@ export class HomeComponent implements OnInit {
     console.log("nueva lista",event);
     let updatedList: Item[] = event;
     this.setItemsList(updatedList);
-    this.getNumberOfCompletedItems();
+    //this.getNumberOfCompletedItems();
   }
+
+
 
   refreshFooter(event: Number): void {
     let numberOfCompletedItems: Number = event;
@@ -42,14 +46,19 @@ export class HomeComponent implements OnInit {
   }
 
   /**
-   * Method that gets the numbers of items completed
+   * Method that gets the completed items
    * @returns 
    */
-  getNumberOfCompletedItems(): number {
+  getCompletedItems(): Item[] {
 
-    let itemsCompleted = this.items.filter( (item: Item) => item.completed === true);
-    return itemsCompleted.length;
+    let itemsCompleted = this.itemsService.getCompletedItems();
+    return itemsCompleted;
 
+  }
+
+
+  setCompletedItems(item: Item[]): void {
+    this.itemsService.setCompletedItems(item);
   }
 
   /**
@@ -57,7 +66,7 @@ export class HomeComponent implements OnInit {
    * @returns 
    */
   getItemsList(): Item[] {
-    let itemList: Item[] = this.itemService.getItemsList();
+    let itemList: Item[] = this.itemsService.getItemsList();
     if(!itemList) {
       return [];
     } else {
@@ -70,6 +79,7 @@ export class HomeComponent implements OnInit {
    * @param item 
    */
   setItemsList(item: Item[]): void {
+    this.itemsService.itemsList = item;
     this.items = item;
   }
 

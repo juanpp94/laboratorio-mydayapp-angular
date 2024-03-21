@@ -9,6 +9,8 @@ import { Subject } from 'rxjs';
 export class ItemsService {
 
   itemsList$ = new Subject<Item[]>();
+  itemsList: Item[] = [];
+  completedItems: Item[] = [];
 
   constructor(private itemHttpService: ItemsHttpService) { }
 
@@ -17,9 +19,8 @@ export class ItemsService {
    * @param itemList 
    */
   setItemsList(itemList: Item[]): void {
-    if(!this.getItemsList()) {
-      this.itemHttpService.setItemListInLocalStorage(itemList);
-    }
+    this.itemsList = itemList;
+    this.itemHttpService.setItemListInLocalStorage(itemList);
     
   }
 
@@ -32,6 +33,10 @@ export class ItemsService {
     return itemList;
   }
 
+  /**
+   * Method that changes the status of an item
+   * @param item 
+   */
   changeItemStatus(item: Item): void {
     let items: Item[] = this.getItemsList();
 
@@ -43,8 +48,31 @@ export class ItemsService {
       }
       console.log(items);
     }
+    this.itemsList = items;
+    this.setItemsList(items);
+    this.completedItems = this.getCompletedItems();
     //console.log(items);
 
+  }
+
+  /**
+   * Method that gets the completed items
+   * @returns 
+   */
+  getCompletedItems(): Item[] {
+    let itemsAux: Item[] = this.getItemsList();
+    let itemsCompleted: Item[] = itemsAux.filter( (item: Item) => item.completed === true);
+    return itemsCompleted;
+
+  }
+
+
+  /**
+   * Method that sets the list of complete items;
+   * @param items 
+   */
+  setCompletedItems(items: Item[])  {
+    this.completedItems = items;
   }
 
 
@@ -68,6 +96,8 @@ export class ItemsService {
     this.itemHttpService.setItemListInLocalStorage(itemsUpdated);
 
   }
+
+  
 
   setItemsListObservable(itemsList: Item[]) {
     this.itemsList$.next(itemsList);

@@ -17,6 +17,7 @@ export class ItemComponent {
    }
 
    changeStatus(item: Item): void {
+      item.completed = !item.completed;
       this.itemsService.changeItemStatus(item);
    }
 
@@ -29,9 +30,31 @@ export class ItemComponent {
     console.log(item);
     this.itemsService.deleteItem(item.id);
     let itemsAux: Item[] = this.getItemsList();
-    this.updateList.next(itemsAux);
+    let completedItemsAux: Item[] = this.getCompletedItems();
+    this.setCompletedItems(completedItemsAux);
+    this.itemsService.itemsList = itemsAux;
+    //this.updateList.next(itemsAux);
 
    }
+
+    /**
+   * Method that gets the completed items
+   * @returns 
+   */
+   getCompletedItems(): Item[] {
+
+      let itemsCompleted = this.itemsService.getCompletedItems();
+      return itemsCompleted;
+
+   }
+
+   /**
+    * Method that sets the completed items
+    * @param item 
+    */
+   setCompletedItems(item: Item[]): void {
+      this.itemsService.setCompletedItems(item);
+    }
    
 
 
