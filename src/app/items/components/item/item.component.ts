@@ -62,6 +62,7 @@ export class ItemComponent {
 
    }
 
+
    /**
     * Method that sets the completed items
     * @param item 
